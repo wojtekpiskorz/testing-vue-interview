@@ -68,9 +68,9 @@ const filterTree = <T extends SearchNodeType<T>>(
         })
     })
 
-    depthFirstTraversal(currentPath, root, node => {
-        delete node.copied
-    })
+    // depthFirstTraversal(currentPath, root, node => {
+    //     delete node.copied
+    // })
 
     if (isUndefined(filteredResult.children) || !filteredResult.children.length) {
         let result = null

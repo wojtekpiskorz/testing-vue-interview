@@ -1,11 +1,11 @@
-import {computed, ref} from "vue";
+import {computed, ModelRef, ref} from "vue";
 
-const useColor = (name: string) => {
+const useColor = (name: ModelRef<string>) => {
     const colorHash = ref('#b96a6a')
 
     return {
         colorHash,
-        color: computed(() => `${name || '[NAME]'} - ${colorHash.value ?? '[HASH]'}`)
+        color: computed(() => `${name.value || '[NAME]'} - ${colorHash.value ?? '[HASH]'}`)
     }
 }
 

@@ -4,20 +4,19 @@ import {computed, reactive, ref} from "vue";
 import {TREE_MOCK} from "../defaults/treeMock.ts";
 import {dfsSearch} from "../utils/search.ts";
 
-const anySearch = ref(false)
+
 const search = ref('')
 const items = reactive(TREE_MOCK)
 
 const result = computed(() => {
-    if (search.value === '') {
-        anySearch.value = false
-        return items
-    }
+    if (search.value === '') return items
 
-    anySearch.value = true
+    return dfsSearch(JSON.parse(JSON.stringify(items)), search.value, ['name'])
 
-    return dfsSearch(items, search.value, ['name'])
 })
+
+const anySearch = computed(() => search.value.length)
+
 
 const classes = computed(() => {
     if (anySearch.value) return ['with-search']

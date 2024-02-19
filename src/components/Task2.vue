@@ -12,7 +12,7 @@ const colorName = ref('')
 	    <label for="color-name">Color name</label>
         <input id="color-name" v-model="colorName" />
     </div>
-	  <ColorPicker :color-name="colorName" />
+	  <ColorPicker v-model="colorName" />
 </template>
 
 <style scoped>

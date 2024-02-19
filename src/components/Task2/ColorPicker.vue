@@ -1,12 +1,17 @@
 <script setup
         lang="ts">
 import useColor from "../../hooks/useColor.ts";
+import {ModelRef} from "vue";
 
-const props = defineProps<{
-    colorName?: string
-}>()
 
-const { colorHash, color } = useColor(props.colorName)
+const colorName: ModelRef<string> = defineModel({required: true})
+
+
+
+const { colorHash, color } = useColor(colorName)
+
+
+
 </script>
 
 <template>
