@@ -1,6 +1,6 @@
-import {computed, ModelRef, ref} from "vue";
+import {computed, Ref, ref} from "vue";
 
-const useColor = (name: ModelRef<string>) => {
+const useColor = (name: Ref<string>) => {
     const colorHash = ref('#b96a6a')
 
     return {

@@ -1,13 +1,10 @@
 <script setup
         lang="ts">
 import useColor from "../../hooks/useColor.ts";
-import {ModelRef} from "vue";
-
-
-const colorName: ModelRef<string> = defineModel({required: true})
 
 
 
+const colorName = defineModel<string>({required: true})
 const { colorHash, color } = useColor(colorName)
 
 

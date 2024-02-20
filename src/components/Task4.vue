@@ -1,12 +1,35 @@
 <script setup
         lang="ts">
 
-import {ref} from "vue";
+import {computed, reactive, ref} from "vue";
 import {getStringWidth} from "../utils/string.ts";
 
-const items = ['Hello', 'Im very long text', 'How are you?', 'Are u ok?']
+const items = reactive(['Hello', 'Im very long text', 'How are you?', 'Are u ok?'])
+
 
 const width = ref(200)
+
+const mappedItems = computed(() => {
+  return items.map((item) => {
+    return {
+      text: item,
+      width: getStringWidth(item, "16px arial")
+    }
+  })
+})
+
+const includedItems = computed(() => {
+  let itemsWidth = 0;
+  let includedItems = 0
+  mappedItems.value.forEach((item) => {
+    if (width.value < itemsWidth) return
+    itemsWidth = itemsWidth + item.width
+    includedItems++
+  })
+  return includedItems
+})
+
+const remainingItems = computed(() => items.length - includedItems.value)
 
 // Use to determinate string size
 // getStringWidth
@@ -14,12 +37,11 @@ const width = ref(200)
 
 <template>
 	<input type="text" v-model="width">
-  <div class="badges" :style="{ width: `${width}px` }">
-      <div class="badge" v-for="item in items" :key="item">
-          <span>{{ item }}</span>
+  <div ref="testItem" class="badges" :style="{ width: `${width}px` }">
+      <div  class="badge" v-for="item in items" :key="item">
+          <span >{{ item }}</span>
       </div>
-
-      <div class="badge-counter">Counter: 0</div>
+      <div class="badge-counter">Counter: {{remainingItems}}</div>
   </div>
 </template>
 
