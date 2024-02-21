@@ -6,7 +6,7 @@ const useColor = (name: Ref<string>) => {
     return {
         colorHash,
         color: computed(() => `${name.value || '[NAME]'} - ${colorHash.value ?? '[HASH]'}`),
-        changeName: (() => name.value = 'reactive change')
+        changeName: () => name.value = 'reactive change'
     }
 }
 
