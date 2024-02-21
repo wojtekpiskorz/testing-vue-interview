@@ -12,6 +12,7 @@ const colorName = ref('')
 	    <label for="color-name">Color name</label>
         <input id="color-name" v-model="colorName" />
     </div>
+  <p>THis is a parent componetn colorName value: {{colorName}}</p>
 	  <ColorPicker v-model="colorName" />
 </template>
 

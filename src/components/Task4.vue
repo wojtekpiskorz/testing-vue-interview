@@ -20,10 +20,11 @@ const mappedItems = computed(() => {
 
 const includedItems = computed(() => {
   let itemsWidth = 0;
-  let includedItems = 0
+  let includedItems = 0;
+  let gap = 8;
   mappedItems.value.forEach((item) => {
     if (width.value < itemsWidth) return
-    itemsWidth = itemsWidth + item.width
+    itemsWidth = itemsWidth + item.width + gap;
     includedItems++
   })
   return includedItems
